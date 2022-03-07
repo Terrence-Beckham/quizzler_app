@@ -1,8 +1,11 @@
+// ignore_for_file: unnecessary_string_escapes
+
 import 'package:quizzler_app/question.dart';
 
 import 'question.dart';
 
 class QuestionBrain {
+  int questionNumber = 0;
   final List<Question> _questionBank = [
     Question(
         question: 'Some cats are actually allergic to humans', answer: true),
@@ -47,10 +50,18 @@ class QuestionBrain {
         answer: true),
   ];
   String getQuestionText(int questionNumber) {
-    return _questionBank[questionNumber].questionText;
+    if (questionNumber < _questionBank.length - 2) {
+      return _questionBank[questionNumber].questionText;
+    } else {
+      return 'No more Questions';
+    }
   }
 
   bool getAnswerText(int questionNumber) {
-    return _questionBank[questionNumber].questionAnswer;
+    if (questionNumber < _questionBank.length - 2) {
+      return _questionBank[questionNumber].questionAnswer;
+    } else {
+      return false;
+    }
   }
 }
