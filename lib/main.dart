@@ -33,6 +33,42 @@ class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
   var questionBrain = QuestionBrain();
 
+  void checkAnswer(bool userPickedAnswer) {
+    bool correctAnswer = questionBrain.getAnswerText();
+    if (userPickedAnswer == correctAnswer) {
+      scoreKeeper.add(
+        const Icon(
+          Icons.check,
+          color: Colors.green,
+        ),
+      );
+    } else {
+      scoreKeeper.add(
+        const Icon(
+          Icons.close,
+          color: Colors.red,
+        ),
+      );
+    }
+  }
+  // Icon addTrueOrFalseIcon(){
+
+  // }
+
+  // Icon AddTrueOrFalseIcon(bool trueOrFalse) {
+  //   if (trueOrFalse = true) {
+  //     return const Icon(
+  //       Icons.check,
+  //       color: Colors.green,
+  //     );
+  //   } else {
+  //     return const Icon(
+  //       Icons.close,
+  //       color: Colors.red,
+  //     );
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBrain.getQuestionText(questionBrain.questionNumber),
+                questionBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -71,15 +107,9 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer =
-                    questionBrain.getAnswerText(questionBrain.questionNumber);
-                if (correctAnswer == true) {
-                  print('User got it right');
-                } else {
-                  print('User got it wrong');
-                }
+                checkAnswer(true);
                 setState(() {
-                  questionBrain.questionNumber++;
+                  questionBrain.nextQuestion();
                 });
               },
             ),
@@ -100,15 +130,9 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer =
-                    questionBrain.getAnswerText(questionBrain.questionNumber);
-                if (correctAnswer == true) {
-                  print('User got it right');
-                } else {
-                  print('User got it wrong');
-                }
+                checkAnswer(false);
                 setState(() {
-                  questionBrain.questionNumber++;
+                  questionBrain.nextQuestion();
                 });
               },
             ),
