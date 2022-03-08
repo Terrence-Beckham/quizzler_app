@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler_app/question_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(const Quizzler());
 
@@ -51,23 +52,6 @@ class _QuizPageState extends State<QuizPage> {
       );
     }
   }
-  // Icon addTrueOrFalseIcon(){
-
-  // }
-
-  // Icon AddTrueOrFalseIcon(bool trueOrFalse) {
-  //   if (trueOrFalse = true) {
-  //     return const Icon(
-  //       Icons.check,
-  //       color: Colors.green,
-  //     );
-  //   } else {
-  //     return const Icon(
-  //       Icons.close,
-  //       color: Colors.red,
-  //     );
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +99,7 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
+//clear score keeper
 
         //False Button
         Expanded(
@@ -143,5 +128,20 @@ class _QuizPageState extends State<QuizPage> {
         )
       ],
     );
+  }
+
+  restartQuiz() {
+    _onBasicAlertPressed(context);
+    scoreKeeper.clear();
+  }
+
+  _onBasicAlertPressed(context) async {
+    await Alert(
+      context: context,
+      title: "Flutter Alert",
+      desc: "Flutter is more awesome with RFlutter Alert.",
+    ).show();
+    scoreKeeper.clear;
+    debugPrint("Alert is closed now");
   }
 }

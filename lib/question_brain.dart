@@ -3,6 +3,7 @@
 import 'package:quizzler_app/question.dart';
 
 import 'question.dart';
+import 'main.dart';
 
 class QuestionBrain {
   int _questionNumber = 0;
@@ -52,7 +53,7 @@ class QuestionBrain {
   nextQuestion() {
     if (_questionNumber < _questionBank.length - 1) {
       _questionNumber++;
-    }
+    } else {}
   }
 
   String getQuestionText() {
@@ -61,5 +62,9 @@ class QuestionBrain {
 
   bool getAnswerText() {
     return _questionBank[_questionNumber].questionAnswer;
+  }
+
+  _restartApp() {
+    _questionNumber = 0;
   }
 }
